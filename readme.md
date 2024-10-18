@@ -69,12 +69,12 @@ python -m pip install requests
 
 ## Script Usage
 
-1. **Download the Script**: Ensure you have the `video_downloader.py` script saved in your desired directory.
+1. **Download the Script**: Ensure you have the `USAFE_downloader.py` script saved in your desired directory.
 
 2. **Run the Script**: Navigate to the directory where the script is located and run:
 
    ```bash
-   python video_downloader.py
+   python USAFE_downloader.py
    ```
 
 3. **Input Details**:
@@ -85,13 +85,13 @@ python -m pip install requests
 ## Example
 
 ```plaintext
-C:\Users\Mohammedgam\Desktop>python video_downloader.py
+C:\Users\Mohammed\Desktop>python USAFE_downloader.py
 Enter the URL of the file (video, audio, pdf, etc.): https://example.com/sample.mp3
 Enter the path where you want to save the file (leave blank for current directory): C:\Users\Mohammedgam\Desktop\audio
 Enter the desired filename (without extension): my_audio
 Detected audio file.
 Downloading: 100% | ETA: 0 seconds
-Downloaded: C:\Users\Mohammedgam\Desktop\audio\my_audio.mp3
+Downloaded: C:\Users\Mohammed\Desktop\audio\my_audio.mp3
 ```
 
 ## Supported File Types
