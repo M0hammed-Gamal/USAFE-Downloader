@@ -1,4 +1,4 @@
-# Video Downloading Script Using yt-dlp
+# USAFE Downloading Script Using yt-dlp
 
 This guide provides instructions for setting up and using a Python script to download videos, audio files, PDFs, and other file types from various platforms using `yt-dlp`.
 
