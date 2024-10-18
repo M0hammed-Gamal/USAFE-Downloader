@@ -1,49 +1,56 @@
-import yt_dlp
 import os
-import sys
+import subprocess
+import yt_dlp
+import requests
 
-def download_video(url, output_path):
-    # Prepare download options
+def download_file(url, output_path, filename):
+    # Construct the full file path
+    full_path = os.path.join(output_path, filename)
+    response = requests.get(url, allow_redirects=True)
+
+    # Save the file
+    with open(full_path, 'wb') as file:
+        file.write(response.content)
+    print(f"Downloaded: {full_path}")
+
+def download_video(url, output_path, filename):
     ydl_opts = {
-        'format': 'bestvideo+bestaudio',
-        'merge_output_format': 'mp4',
-        'outtmpl': os.path.join(output_path, '%(title)s.%(ext)s'),
-        'ffmpeg_location': 'C:/ProgramData/chocolatey/bin/ffmpeg.exe',  # Update this to your actual ffmpeg path
-        'progress_hooks': [progress_hook],  # Hook for download progress
+        'outtmpl': os.path.join(output_path, filename + '.%(ext)s'),
+        'progress_hooks': [hook],
     }
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
 
-    # Run yt-dlp with the provided options
-    try:
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            ydl.download([url])
-    except Exception as e:
-        print(f"Error: {e}")
-
-def progress_hook(d):
+def hook(d):
     if d['status'] == 'downloading':
-        percent = d['_percent_str'].strip()  # Get the percentage completed
-        speed = d['_speed_str']  # Download speed
-        eta = d['_eta_str']  # Estimated time left
-        
-        # Update the status in one line
-        sys.stdout.write(f"\rDownloading: {percent} | Speed: {speed} | ETA: {eta}")
-        sys.stdout.flush()
-
-    elif d['status'] == 'finished':
-        print(f"\nDownload complete. File saved to: {d['filename']}")
-
-    elif d['status'] == 'error':
-        print("An error occurred during the download.")
+        print(f"\rDownloading: {d['_percent_str']} | ETA: {d['eta']} seconds", end='')
 
 def main():
-    # Ask the user for inputs
-    url = input("Enter the URL of the video: ")
-    output_path = input("Enter the path where you want to save the video (leave blank for current directory): ")
+    url = input("Enter the URL of the file (video, audio, pdf, etc.): ")
+    output_path = input("Enter the path where you want to save the file (leave blank for current directory): ")
+    filename = input("Enter the desired filename (without extension): ")
+
     if not output_path:
         output_path = os.getcwd()
 
-    # Start download
-    download_video(url, output_path)
+    # Ensure the output path exists
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
 
-if __name__ == '__main__':
+    # Check the file type based on the URL extension
+    if url.lower().endswith(('.pdf', '.mp3', '.mp4', '.avi', '.mkv', '.flv', '.mov')):
+        if url.lower().endswith('.pdf'):
+            print("Detected PDF file.")
+            download_file(url, output_path, filename + '.pdf')
+        elif url.lower().endswith(('.mp3', '.mp4', '.avi', '.mkv', '.flv', '.mov')):
+            print("Detected video or audio file.")
+            download_video(url, output_path, filename)
+        else:
+            print("Downloading other file type.")
+            download_file(url, output_path, filename)
+    else:
+        print("Detected video URL.")
+        download_video(url, output_path, filename)
+
+if __name__ == "__main__":
     main()
