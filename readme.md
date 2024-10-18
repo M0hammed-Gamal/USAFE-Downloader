@@ -1,4 +1,4 @@
-# USAFE Downloading Script Using yt-dlp
+# Video Downloading Script Using yt-dlp
 
 This guide provides instructions for setting up and using a Python script to download videos, audio files, PDFs, and other file types from various platforms using `yt-dlp`.
 
@@ -9,6 +9,7 @@ This guide provides instructions for setting up and using a Python script to dow
   - [Option 1: Manual Installation](#option-1-manual-installation)
     - [Install Python](#install-python)
     - [Install yt-dlp](#install-yt-dlp)
+    - [Install Requests](#install-requests)
   - [Option 2: Install via PowerShell](#option-2-install-via-powershell)
 - [Script Usage](#script-usage)
 - [Example](#example)
@@ -39,6 +40,15 @@ You can install the necessary tools either manually or through an automated Powe
    pip install yt-dlp
    ```
 
+#### Install Requests
+
+1. Open Command Prompt (cmd).
+2. Run the following command:
+
+   ```bash
+   pip install requests
+   ```
+
 ### Option 2: Install via PowerShell
 
 You can automate the installation process using PowerShell. Open PowerShell and run the following script:
@@ -54,6 +64,7 @@ Remove-Item $pythonInstallerPath
 # Install yt-dlp
 python -m pip install --upgrade pip
 python -m pip install yt-dlp
+python -m pip install requests
 ```
 
 ## Script Usage
