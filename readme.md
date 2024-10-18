@@ -25,5 +25,3 @@ Install yt-dlp
 Open Command Prompt (cmd).
 
 Run the following command:
-bash
-pip install yt-dlp
