@@ -74,6 +74,3 @@ Troubleshooting
 If you encounter errors related to missing modules, ensure you have installed yt-dlp correctly.
 For any issues related to FFmpeg, ensure its path is correctly set in the script and that it is installed properly.
 you can contact me thru emil . 
-
-
-
