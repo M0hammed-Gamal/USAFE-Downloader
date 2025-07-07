@@ -1,16 +1,25 @@
 import os
-import subprocess
 import yt_dlp
 import requests
 
 def download_file(url, output_path, filename):
     # Construct the full file path
     full_path = os.path.join(output_path, filename)
-    response = requests.get(url, allow_redirects=True)
+    try:
+        response = requests.get(url, allow_redirects=True, stream=True)
+    except requests.RequestException as e:
+        print(f"Error downloading file: {e}")
+        return
 
-    # Save the file
+    if response.status_code != 200:
+        print(f"Failed to download file. HTTP status {response.status_code}: {response.reason}")
+        return
+
+    # Save the file in chunks to handle large downloads
     with open(full_path, 'wb') as file:
-        file.write(response.content)
+        for chunk in response.iter_content(chunk_size=8192):
+            if chunk:
+                file.write(chunk)
     print(f"Downloaded: {full_path}")
 
 def download_video(url, output_path, filename):
