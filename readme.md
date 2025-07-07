@@ -106,3 +106,11 @@ The script supports downloading the following file types:
 
 - Ensure that the URL you provide points to a direct file download. If the URL does not point directly to a downloadable file, the script may return an error.
 - If you encounter issues, please check your internet connection and ensure the URL is valid.
+
+## Running Tests
+
+Unit tests are provided in the `tests/` directory. After installing the dependencies, run `pytest` from the repository root:
+
+```bash
+pytest
+```
