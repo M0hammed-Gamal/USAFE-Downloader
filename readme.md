@@ -11,10 +11,12 @@ This guide provides instructions for setting up and using a Python script to dow
     - [Install yt-dlp](#install-yt-dlp)
     - [Install Requests](#install-requests)
   - [Option 2: Install via PowerShell](#option-2-install-via-powershell)
+- [Linux/macOS Usage](#linuxmacos-usage)
 - [Script Usage](#script-usage)
 - [Example](#example)
 - [Supported File Types](#supported-file-types)
 - [Notes](#notes)
+- [Disclaimer](#disclaimer)
 
 ## Prerequisites
 
@@ -67,6 +69,34 @@ python -m pip install yt-dlp
 python -m pip install requests
 ```
 
+## Linux/macOS Usage
+
+1. Ensure Python 3 is installed.
+   - On Debian/Ubuntu:
+
+     ```bash
+     sudo apt update
+     sudo apt install python3 python3-pip
+     ```
+
+   - On macOS (with Homebrew):
+
+     ```bash
+     brew install python
+     ```
+
+2. Install yt-dlp and requests:
+
+   ```bash
+   pip3 install yt-dlp requests
+   ```
+
+3. Run the script:
+
+   ```bash
+   python3 USAFE_downloader.py
+   ```
+
 ## Script Usage
 
 1. **Download the Script**: Ensure you have the `USAFE_downloader.py` script saved in your desired directory.
@@ -106,3 +136,8 @@ The script supports downloading the following file types:
 
 - Ensure that the URL you provide points to a direct file download. If the URL does not point directly to a downloadable file, the script may return an error.
 - If you encounter issues, please check your internet connection and ensure the URL is valid.
+
+## Disclaimer
+
+Use this script only to download content that you have the rights to access. Ensure all downloads comply with local laws and the terms of service of the content provider.
+
