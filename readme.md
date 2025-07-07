@@ -8,8 +8,7 @@ This guide provides instructions for setting up and using a Python script to dow
 - [Installation](#installation)
   - [Option 1: Manual Installation](#option-1-manual-installation)
     - [Install Python](#install-python)
-    - [Install yt-dlp](#install-yt-dlp)
-    - [Install Requests](#install-requests)
+    - [Install Dependencies](#install-dependencies)
   - [Option 2: Install via PowerShell](#option-2-install-via-powershell)
 - [Script Usage](#script-usage)
 - [Example](#example)
@@ -31,22 +30,13 @@ You can install the necessary tools either manually or through an automated Powe
 1. Download the latest version of Python from [python.org](https://www.python.org/downloads/).
 2. Run the installer and **ensure you check the option "Add Python to PATH"**.
 
-#### Install yt-dlp
+#### Install Dependencies
 
 1. Open Command Prompt (cmd).
-2. Run the following command:
+2. Run the following command from the project directory:
 
    ```bash
-   pip install yt-dlp
-   ```
-
-#### Install Requests
-
-1. Open Command Prompt (cmd).
-2. Run the following command:
-
-   ```bash
-   pip install requests
+   pip install -r requirements.txt
    ```
 
 ### Option 2: Install via PowerShell
@@ -61,10 +51,9 @@ Invoke-WebRequest -Uri $pythonInstaller -OutFile $pythonInstallerPath
 Start-Process -FilePath $pythonInstallerPath -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
 Remove-Item $pythonInstallerPath
 
-# Install yt-dlp
+# Install required packages
 python -m pip install --upgrade pip
-python -m pip install yt-dlp
-python -m pip install requests
+python -m pip install -r requirements.txt
 ```
 
 ## Script Usage
