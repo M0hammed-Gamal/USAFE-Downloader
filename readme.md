@@ -106,3 +106,17 @@ The script supports downloading the following file types:
 
 - Ensure that the URL you provide points to a direct file download. If the URL does not point directly to a downloadable file, the script may return an error.
 - If you encounter issues, please check your internet connection and ensure the URL is valid.
+
+## Running the Web App
+
+A minimal Flask application is provided to trigger downloads from a browser.
+
+1. Install the required Python packages:
+   ```bash
+   pip install flask requests yt-dlp
+   ```
+2. Start the web server:
+   ```bash
+   python web_app.py
+   ```
+3. Open `http://127.0.0.1:5000` in your browser and submit the URL, path, and filename.
