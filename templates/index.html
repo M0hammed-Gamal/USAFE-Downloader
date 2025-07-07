@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>USAFE Downloader</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        label { display: block; margin-bottom: 10px; }
+        input { padding: 5px; width: 300px; }
+        button { padding: 5px 10px; margin-top: 10px; }
+        #message { margin-top: 20px; }
+    </style>
+</head>
+<body>
+<h1>USAFE Downloader</h1>
+<form id="download-form">
+    <label>URL:<br><input type="text" id="url" required></label>
+    <label>Path:<br><input type="text" id="path"></label>
+    <label>Filename:<br><input type="text" id="filename"></label>
+    <button type="submit">Download</button>
+</form>
+<div id="message"></div>
+<script>
+document.getElementById('download-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const payload = {
+        url: document.getElementById('url').value,
+        path: document.getElementById('path').value,
+        filename: document.getElementById('filename').value
+    };
+    fetch('/download', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    }).then(resp => resp.json())
+      .then(data => {
+          document.getElementById('message').innerText = data.message;
+      }).catch(() => {
+          document.getElementById('message').innerText = 'Error';
+      });
+});
+</script>
+</body>
+</html>
